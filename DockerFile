@@ -43,8 +43,8 @@ RUN chown -R gitpod /sdk
 
 USER gitpod
 
-RUN mkdir -p /gitpod/.android && \
-touch /gitpod/.android/repositories.cfg && \
+RUN mkdir -p /home/gitpod/.android && \
+touch /home/gitpod/.android/repositories.cfg && \
 ${ANDROID_HOME}/tools/bin/sdkmanager --update 
 
 RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
