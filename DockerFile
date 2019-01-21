@@ -50,6 +50,8 @@ ${ANDROID_HOME}/tools/bin/sdkmanager --update
 RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
 ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 
+RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --install "build-tools;28.0.3"
+
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 USER root
