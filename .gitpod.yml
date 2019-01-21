@@ -1,4 +1,2 @@
 image:
   file: DockerFile
-tasks:
-  - command: "./gradlew clean build"
