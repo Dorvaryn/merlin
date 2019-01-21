@@ -53,4 +53,3 @@ ${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 USER root
-
