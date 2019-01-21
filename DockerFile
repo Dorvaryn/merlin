@@ -38,18 +38,17 @@ RUN mkdir -p $ANDROID_HOME/licenses/ \
 && echo "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910" > $ANDROID_HOME/licenses/android-sdk-preview-license
 
 ADD packages.txt /sdk
-RUN mkdir -p /root/.android && \
-touch /root/.android/repositories.cfg && \
-${ANDROID_HOME}/tools/bin/sdkmanager --update 
-
-RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
-${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
-
-RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 RUN chown -R gitpod /sdk
 
 USER gitpod
+
+RUN mkdir -p /gitpod/.android && \
+touch /gitpod/.android/repositories.cfg && \
+${ANDROID_HOME}/tools/bin/sdkmanager --update 
+
+RUN yes | while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt && \
+${ANDROID_HOME}/tools/bin/sdkmanager ${PACKAGES}
 
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
